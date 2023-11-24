@@ -1,12 +1,16 @@
 from django.shortcuts import render,redirect
 from django.http import HttpResponse
 # Create your views here.
+from app3.models import database1
+from app3.forms import dataform
+
 from django.contrib.auth.models import User
 from django.contrib import messages
 from django.contrib.auth import authenticate,login,logout
 
 def home(request):
-    return render(request,'home.html')
+    d=database1.objects.all()
+    return render(request,'home.html',{'d':d})
 
 def signup(request):
     if request.method=='POST':
@@ -44,3 +48,16 @@ def user_login(request):
 def user_logout(request):
     logout(request)
     return redirect(user_login)
+
+
+def add(request):
+    if(request.method=='POST'):
+        form=dataform(request.POST)
+        if form.is_valid():
+            form.save()
+            return home(request)
+    return render(request,'add.html')
+
+def view(request):
+    d=database1.objects.all()
+    return render(request,'view.html',{'d':d})
