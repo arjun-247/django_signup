@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="" method="post">
+        {% csrf_token %}
+        Employee_ID: <input type="text" name="emp_id">
+        <br><br>
+        Employee_Name:<input type="text" name="emp_name">
+        <br><br>
+        Employee_Salary:<input type="text" name="emp_salary">
+        <br><br>
+        Designation:<input type="text" name="designation">
+        <br>
+        <br>
+        Place:<input type="text" name="place">
+        <br>
+        <br>
+        <input type="submit" value="submit">
+    </form>
+</body>
+</html>
