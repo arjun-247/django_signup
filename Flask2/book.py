@@ -10,7 +10,7 @@ app.config['BOOK_FOLDER']=BOOK_FOLDER
 
 @app.route('/')
 def home3():
-    return render_template('home.html')
+    return render_template('home3.html')
 
 @app.route('/bform',methods=['POST','GET'])
 def bform():
@@ -33,3 +33,31 @@ def bform():
 
 @app.route('/upload')
 def upload():
+    return render_template('upload.html')
+
+@app.route('/uploader', methods=['POST', 'GET'])
+def uploader():
+    if request.method == 'POST':
+        f = request.files['file']
+        filename = secure_filename(f.filename)
+        f.save(os.path.join(app.config['BOOK_FOLDER'], filename))
+        return render_template('uploader.html', x=filename)
+    
+@app.route('/up/<f>')
+def uploaded_file(f):
+    return send_from_directory(app.config['BOOK_FOLDER'], f)
+
+
+
+@app.route('/booklist')
+def booklist():
+    con = sql.connect("database3.db")
+    con.row_factory = sql.Row
+    cur = con.cursor()
+    cur.execute("select * from book")
+    rows = cur.fetchall()
+    return render_template('booklist.html',rows=rows)
+
+
+if __name__=='__main__':
+    app.run(debug=True,port=8001)

@@ -6,9 +6,11 @@
     <title>Document</title>
 </head>
 <body>
-    <p>uploaded successfully</p>
-<img src="{{url_for('uploaded_file',f=x)}}" height="400px"
-width="400px">
-<a href="{{url_for('uploaded_file',f=x)}}">link</a>
+    <a href="{% url 'home' %}">HOME</a>
+    <a href="{% url 'add' %}">ADD BOOK</a>
+    <a href="{% url 'list' %}">VIEW BOOK</a>
+    {% block content %}
+    <h1>WELCOME</h1>
+    {% endblock %}
 </body>
 </html>

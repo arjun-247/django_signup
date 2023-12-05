@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    {% block content %}
+    <table>
+        <tr>
+            <th>TITLE</th>
+            <th>COVER</th>
+            <th>AUTHOR</th>
+            <th>PDF</th>
+        </tr>
+        {% for i in b %}
+
+            <tr>
+                <td>{{i.title}}</td>
+                <td><img src="{{i.cover.url}}" alt="" width="50" height="50"></td>
+                <td>{{i.author}}</td>
+                <td><a href="{{i.pdf.url}}">Download</a></td>
+            </tr>
+            {% endfor %}
+    </table>
+
+    {% endblock %}
+</body>
+</html>
